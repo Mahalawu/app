@@ -43,7 +43,7 @@
   "screenshots": [
     {
       "src": "https://mahalawu.github.io/app/desktop.png",
-      "sizes": "1918x775",
+      "sizes": "1920x1080",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Tampilan Desktop Launcher"

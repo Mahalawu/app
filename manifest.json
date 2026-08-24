@@ -1,7 +1,7 @@
 {
   "short_name": "Mahalawu App",
   "name": "Mahalawu Launcher App",
-  "description": "Aplikasi Launcher berbasis Google Apps Script untuk manajemen workflow.",
+  "description": "Mahalawu Aplikasi Launcher untuk manajemen aplikasi.",
   "icons": [
     {
       "src": "https://mahalawu.github.io/app/logomahalawu192.png",

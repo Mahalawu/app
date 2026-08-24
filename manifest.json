@@ -49,7 +49,7 @@
       "label": "Tampilan Desktop Launcher"
     },
     {
-      "src": "ttps://mahalawu.github.io/app/mobile.png",
+      "src": "https://mahalawu.github.io/app/mobile.png",
       "sizes": "750x1334",
       "type": "image/png",
       "form_factor": "narrow",

@@ -1,6 +1,6 @@
 {
-  "short_name": "GAS Launcher",
-  "name": "Google Apps Script Launcher App",
+  "short_name": "Mahalawu App",
+  "name": "Mahalawu Launcher App",
   "description": "Aplikasi Launcher berbasis Google Apps Script untuk manajemen workflow.",
   "icons": [
     {

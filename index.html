@@ -2,47 +2,35 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Mahalawu App Launcher</title>
-
-  <!-- 1. LOGO / FAVICON CUSTOM KAMU (Ganti URL gambar ini dengan link logo kamu) -->
-  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/628/628283.png">
-  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/628/628283.png">
-
-  <!-- 2. METADATA UNTUK SHORTCUT / PWA HP -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="App Launcher">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Launcher App</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4285f4">
   <style>
-    * {
+    body, html {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background-color: #f8fafc;
+      background-color: #ffffff;
     }
     iframe {
       width: 100%;
       height: 100%;
       border: none;
-      display: block;
     }
   </style>
 </head>
 <body>
+  <iframe src="https://script.google.com/macros/s/AKfycby8XeGxYr_0X9M6g1RglywOgE2R2QZjWmqaonMntZhNqSA0yuRzlNYXS7RR8XQIpZPhwQ/exec" allow="geolocation; microphone; camera"></iframe>
 
-  <!-- 3. PASTA-KAN URL EXEC WEB APP GAS KAMU DI SINI -->
-  <iframe 
-    src="https://script.google.com/macros/s/AKfycby8XeGxYr_0X9M6g1RglywOgE2R2QZjWmqaonMntZhNqSA0yuRzlNYXS7RR8XQIpZPhwQ/exec" 
-    allow="geolocation; microphone; camera"
-    sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-  </iframe>
-
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('Service Worker Registered'))
+        .catch(err => console.error('SW Registration Failed:', err));
+    }
+  </script>
 </body>
 </html>

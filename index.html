@@ -2,35 +2,182 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Launcher App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GAS PWA Launcher</title>
+  
+  <!-- Web App Manifest & Meta Tags PWA -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#4285f4">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="GAS Launcher">
+
   <style>
-    body, html {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+    html, body {
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background-color: #ffffff;
+      background-color: #f8f9fa;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
-    iframe {
+    
+    /* Fullscreen iFrame Container */
+    #app-frame {
       width: 100%;
       height: 100%;
       border: none;
+      display: block;
+    }
+
+    /* Tampilan Cadangan (Fallback / Login Screen) */
+    #fallback-screen {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      padding: 24px;
+      text-align: center;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 32px 24px;
+      max-width: 400px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border: 1px solid #e0e0e0;
+      margin: auto;
+    }
+
+    .icon-box {
+      width: 64px;
+      height: 64px;
+      background: #e8f0fe;
+      color: #1a73e8;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 28px;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: #202124;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #5f6368;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 12px 20px;
+      background-color: #1a73e8;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #1557b0;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: #5f6368;
+      border: 1px solid #dadce0;
+      margin-top: 10px;
+    }
+
+    .btn-secondary:hover {
+      background-color: #f1f3f4;
     }
   </style>
 </head>
 <body>
-  <iframe src="https://script.google.com/macros/s/AKfycby8XeGxYr_0X9M6g1RglywOgE2R2QZjWmqaonMntZhNqSA0yuRzlNYXS7RR8XQIpZPhwQ/exec" allow="geolocation; microphone; camera"></iframe>
+
+  <!-- iFrame Utama Pengunggah Aplikasi GAS -->
+  <iframe 
+    id="app-frame" 
+    src="https://script.google.com/macros/s/AKfycby8XeGxYr_0X9M6g1RglywOgE2R2QZjWmqaonMntZhNqSA0yuRzlNYXS7RR8XQIpZPhwQ/exec" 
+    allow="geolocation; microphone; camera; clipboard-write;"
+    sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-top-navigation">
+  </iframe>
+
+  <!-- Fallback Screen Jika Kena Pembatasan Login/X-Frame Google -->
+  <div id="fallback-screen">
+    <div class="card">
+      <div class="icon-box">🔐</div>
+      <h2>Otentikasi Diperlukan</h2>
+      <p>Google Apps Script memerlukan verifikasi akun atau sesi login baru yang tidak dapat ditayangkan langsung di dalam frame.</p>
+      <button class="btn" onclick="openDirectUrl()">Buka & Login di Browser</button>
+      <button class="btn btn-secondary" onclick="reloadFrame()">Coba Muat Ulang</button>
+    </div>
+  </div>
 
   <script>
+    const GAS_URL = "https://script.google.com/macros/s/AKfycby8XeGxYr_0X9M6g1RglywOgE2R2QZjWmqaonMntZhNqSA0yuRzlNYXS7RR8XQIpZPhwQ/exec";
+    const iframe = document.getElementById('app-frame');
+    const fallback = document.getElementById('fallback-screen');
+
+    // Register Service Worker untuk Standar PWABuilder
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js')
-        .then(() => console.log('Service Worker Registered'))
-        .catch(err => console.error('SW Registration Failed:', err));
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('Service Worker registered:', reg.scope))
+          .catch(err => console.error('Service Worker registration failed:', err));
+      });
     }
+
+    // Penanganan Masalah X-Frame-Options / Timeout Pembacaan
+    let loadTimeout = setTimeout(() => {
+      console.warn('Peluncuran aplikasi memakan waktu lama. Menyiapkan otentikasi alternatif.');
+    }, 8000);
+
+    iframe.onload = function() {
+      clearTimeout(loadTimeout);
+    };
+
+    function openDirectUrl() {
+      window.open(GAS_URL, '_blank');
+    }
+
+    function reloadFrame() {
+      fallback.style.display = 'none';
+      iframe.style.display = 'block';
+      iframe.src = GAS_URL + '?reload=' + new Date().getTime();
+    }
+
+    // Mendengarkan pesan jika GAS mengirim sinyal redirect/popup
+    window.addEventListener('message', function(event) {
+      if (event.data === 'REDIRECT_LOGIN') {
+        openDirectUrl();
+      }
+    });
   </script>
 </body>
 </html>

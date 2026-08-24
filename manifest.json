@@ -30,8 +30,8 @@
   ],
   "id": "/?source=pwa",
   "start_url": "./index.html",
-  "background_color": "#ffffff",
-  "theme_color": "#4285f4",
+  "background_color": "#154ec1",
+  "theme_color": "#154ec1",
   "display": "standalone",
   "orientation": "portrait",
   "categories": [

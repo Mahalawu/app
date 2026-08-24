@@ -42,7 +42,7 @@
   "dir": "ltr",
   "screenshots": [
     {
-      "src": "screenshots/desktop.png",
+      "src": "https://mahalawu.github.io/app/desktop.png",
       "sizes": "1918x775",
       "type": "image/png",
       "form_factor": "wide",

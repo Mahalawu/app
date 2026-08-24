@@ -1,41 +1,21 @@
 {
-  "name": "Aplikasi PWA dengan GAS",
-  "short_name": "PWA GAS",
-  "description": "Progressive Web App yang terhubung dengan Google Apps Script backend",
-  "start_url": "/",
+  "name": "GAS Launcher App",
+  "short_name": "Launcher",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#4A90E2",
+  "theme_color": "#4285f4",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "icons/icon-192.png",
+      "src": "https://via.placeholder.com/192.png?text=App",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
-      "src": "icons/icon-512.png",
+      "src": "https://via.placeholder.com/512.png?text=App",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "screenshots/desktop.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "platform": "wide"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "Cek Koneksi",
-      "short_name": "Cek",
-      "description": "Periksa status koneksi ke backend",
-      "url": "/?action=check",
-      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+      "type": "image/png"
     }
   ]
 }

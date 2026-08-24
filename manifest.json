@@ -1,7 +1,7 @@
 {
-  "name": "GAS Launcher App",
-  "short_name": "Launcher",
-  "start_url": "./index.html",
+  "name": "Mahalawu Launcher App",
+  "short_name": "App. Launcher",
+  "start_url": "/app/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4285f4",
@@ -17,5 +17,6 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "description": "Aplikasi launcher beberapa aplikasi."
 }

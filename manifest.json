@@ -33,6 +33,7 @@
     }
   ],
   "id": "/?source=pwa",
+  "prefer_related_applications": "false",
   "scope": "/app/",
   "start_url": "./index.html",
   "background_color": "#154ec1",

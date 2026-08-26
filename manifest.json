@@ -33,7 +33,7 @@
     }
   ],
   "id": "/?source=pwa",
-  "scope": "/app/",
+  "scope": "https://mahalawu.github.io/app/",
   "start_url": "./index.html",
   "background_color": "#154ec1",
   "theme_color": "#154ec1",

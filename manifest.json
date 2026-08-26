@@ -5,7 +5,7 @@
   "scope_extensions": [
     "origin": "*.github.io",
     "origin": "mahalawu.github.io"
-  ],
+  ]
   "icons": [
     {
       "src": "https://mahalawu.github.io/app/logomahalawu192.png",
@@ -31,7 +31,7 @@
       "sizes": "512x512",
       "purpose": "maskable"
     }
-  ],
+  ]
   "id": "/?source=pwa",
   "scope": "/app/",
   "start_url": "./index.html",

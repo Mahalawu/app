@@ -3,7 +3,7 @@
   "name": "Mahalawu Launcher App",
   "description": "Mahalawu Aplikasi Launcher untuk manajemen aplikasi.",
   "scope": "/app/",
-  "start_url": "/app/",  
+  "start_url": "/app/index.html",  
   "scope_extensions": [
     "origin": "*.github.io",
     "origin": "mahalawu.github.io"

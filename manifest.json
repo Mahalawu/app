@@ -2,6 +2,8 @@
   "short_name": "Mahalawu App",
   "name": "Mahalawu Launcher App",
   "description": "Mahalawu Aplikasi Launcher untuk manajemen aplikasi.",
+  "scope": "/app/",
+  "start_url": "/app/",  
   "scope_extensions": [
     "origin": "*.github.io",
     "origin": "mahalawu.github.io"
@@ -33,8 +35,6 @@
     }
   ],
   "id": "/?source=pwa",
-  "scope": "/app/",
-  "start_url": "/app/",
   "background_color": "#154ec1",
   "theme_color": "#154ec1",
   "display": "standalone",
